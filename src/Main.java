@@ -9,8 +9,13 @@ public class Main {
             abb.insertar(i);
         }
 
-        System.out.println("El elemento 3 pertenece? " + abb.pertenece(3));//true
-        System.out.println("El elemento 11 pertenece? " + abb.pertenece(11));//false
+//        System.out.println("El elemento 3 pertenece? " + abb.pertenece(3));//true
+//        System.out.println("El elemento 11 pertenece? " + abb.pertenece(11));//false
 
+        abb.listarAscendente();
+        System.out.println("");
+        abb.listarDescendente();
+        System.out.println("");
+        System.out.println(abb.listarAscendenteV2());
     }
 }

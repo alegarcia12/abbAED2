@@ -46,6 +46,62 @@ public class ABB {
         }
     }
 
+    public void listarAscendente() {
+        listarAscendente(raiz);
+    }
+
+    private void listarAscendente(NodoABB nodo) {
+        if (nodo != null) {
+            listarAscendente(nodo.izq);
+            System.out.print(nodo.dato + " ");
+            listarAscendente(nodo.der);
+        }
+    }
+
+    public String listarAscendenteV2() {
+        return listarAscendenteV2(raiz);
+    }
+
+    private String listarAscendenteV2(NodoABB nodo) {
+        if (nodo != null) {
+            return listarAscendenteV2(nodo.izq) + nodo.dato + "" + listarAscendenteV2(nodo.der);
+        } else {
+            return " ";
+        }
+    }
+
+    public void listarDescendente() {
+        listarDescendente(raiz);
+    }
+
+    private void listarDescendente(NodoABB nodo) {
+        if (nodo != null) {
+            listarDescendente(nodo.der);
+            System.out.print(nodo.dato + " ");
+            listarDescendente(nodo.izq);
+        }
+    }
+
+    public int borrarMinimo() {
+        if (raiz.izq == null) {
+            int borrado = raiz.dato;
+            raiz = raiz.der;
+            return borrado;
+        } else {
+            return borrarMinimo(raiz);
+        }
+    }
+
+    private int borrarMinimo(NodoABB nodo) {
+        if (nodo.izq.izq == null) {
+            int borrado = nodo.izq.dato;
+            nodo.izq = nodo.izq.der;
+            return borrado;
+        } else {
+            return borrarMinimo(nodo.izq);
+        }
+    }
+
     private class NodoABB {
         private int dato;
         private NodoABB izq;
