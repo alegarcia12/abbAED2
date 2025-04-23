@@ -1,42 +1,43 @@
 package abb;
 
-public class ABB {
+public class ABB<T extends Comparable<T>> {
 
-    private NodoABB raiz;
+    private NodoABB<T> raiz;
 
-    public void insertar(int dato) {
+    public void insertar(T dato) {
         if (raiz == null) {
-            raiz = new NodoABB(dato);
+            raiz = new NodoABB<>(dato);
         } else {
             insertar(raiz, dato);
         }
     }
 
-    private void insertar(NodoABB nodo, int dato) {
-        if (dato < nodo.dato) {
+    private void insertar(NodoABB<T> nodo, T dato) {
+        if (dato.compareTo(nodo.dato) < 0) {
             if (nodo.izq == null) {
-                nodo.izq = new NodoABB(dato);
+                nodo.izq = new NodoABB<>(dato);
             } else {
                 insertar(nodo.izq, dato);
             }
         } else {
             if (nodo.der == null) {
-                nodo.der = new NodoABB(dato);
+                nodo.der = new NodoABB<>(dato);
             } else {
                 insertar(nodo.der, dato);
             }
         }
     }
 
-    public boolean pertenece(int dato) {
+
+    public boolean pertenece(T dato) {
         return pertenece(raiz, dato);
     }
 
-    private boolean pertenece(NodoABB nodo, int dato) {
+    private boolean pertenece(NodoABB<T> nodo, T dato) {
         if (nodo != null) {
-            if (dato == nodo.dato) {
+            if (dato.equals(nodo.dato)) {
                 return true;
-            } else if (dato < nodo.dato) {
+            } else if (dato.compareTo(nodo.dato) < 0) {
                 return pertenece(nodo.izq, dato);
             } else {
                 return pertenece(nodo.der, dato);
@@ -46,77 +47,42 @@ public class ABB {
         }
     }
 
-    public void listarAscendente() {
-        listarAscendente(raiz);
+    //EJERCICIO 6 PARTE A
+
+    public int contarElemMayoresAK(T k){
+        return contarElemMayoresAK(raiz, k);
     }
 
-    private void listarAscendente(NodoABB nodo) {
-        if (nodo != null) {
-            listarAscendente(nodo.izq);
-            System.out.print(nodo.dato + " ");
-            listarAscendente(nodo.der);
+    private int contarElemMayoresAK(NodoABB<T> nodo, T k){
+        if (nodo != null){
+            if (k.compareTo(nodo.dato) >= 0){
+                return contarElemMayoresAK(nodo.der,k);
+            }else{
+                return contarElemMayoresAK(nodo.izq,k) + 1 + contarElemMayoresAK(nodo.der,k);
+            }
+        }else{
+            return 0;
         }
     }
 
-    public String listarAscendenteV2() {
-        return listarAscendenteV2(raiz);
-    }
 
-    private String listarAscendenteV2(NodoABB nodo) {
-        if (nodo != null) {
-            return listarAscendenteV2(nodo.izq) + nodo.dato + "" + listarAscendenteV2(nodo.der);
-        } else {
-            return " ";
-        }
-    }
-
-    public void listarDescendente() {
-        listarDescendente(raiz);
-    }
-
-    private void listarDescendente(NodoABB nodo) {
-        if (nodo != null) {
-            listarDescendente(nodo.der);
-            System.out.print(nodo.dato + " ");
-            listarDescendente(nodo.izq);
-        }
-    }
-
-    public int borrarMinimo() {
-        if (raiz.izq == null) {
-            int borrado = raiz.dato;
-            raiz = raiz.der;
-            return borrado;
-        } else {
-            return borrarMinimo(raiz);
-        }
-    }
-
-    private int borrarMinimo(NodoABB nodo) {
-        if (nodo.izq.izq == null) {
-            int borrado = nodo.izq.dato;
-            nodo.izq = nodo.izq.der;
-            return borrado;
-        } else {
-            return borrarMinimo(nodo.izq);
-        }
-    }
-
-    private class NodoABB {
-        private int dato;
+    private class NodoABB<Q> {
+        private Q dato;
         private NodoABB izq;
         private NodoABB der;
 
-        public NodoABB(int dato) {
+        public NodoABB(Q dato) {
             this.dato = dato;
         }
 
 
         @Override
         public String toString() {
-            return "NodoABB{" +
-                    "dato=" + dato +
+            return "{" + dato +
                     '}';
         }
     }
 }
+
+
+
