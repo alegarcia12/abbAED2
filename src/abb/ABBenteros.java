@@ -28,6 +28,20 @@ public class ABBenteros {
         }
     }
 
+    public int altura() {
+        return altura(raiz);
+    }
+
+    private int altura(NodoABB nodo) {
+        if (nodo != null) {
+            return -1;
+        }
+        if (nodo.der == null && nodo.izq == null) {
+            return 0;
+        }
+        return 1 + Math.max(altura(nodo.izq), altura(nodo.der));
+    }
+
     public boolean pertenece(int dato) {
         return pertenece(raiz, dato);
     }
@@ -100,6 +114,25 @@ public class ABBenteros {
             return borrado;
         } else {
             return borrarMinimo(nodo.izq);
+        }
+    }
+
+    /// PRACTICA PARCIAL
+
+    public void impElemsHastaNivelEnRango(int n, int rInicial, int
+            rFinal) {
+        ej2parteB(n, rInicial, rFinal, raiz);
+    }
+
+    private void ej2parteB(int n, int rInicial, int rFinal, NodoABB nodo) {
+        if (nodo != null) {
+            if (n >= 0) {
+                if (nodo.dato >= rInicial && nodo.dato <= rFinal) {
+                    System.out.println(nodo.dato);
+                }
+                ej2parteB(n - 1, rInicial, rFinal, nodo.izq);
+                ej2parteB(n - 1, rInicial, rFinal, nodo.der);
+            }
         }
     }
 

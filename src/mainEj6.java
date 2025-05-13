@@ -6,6 +6,13 @@ public class mainEj6 {
 
         int[] enteros = {10, 6, 18, 4, 9, 15, 21, 16};
 
+        //          10
+        //        /    \
+        //       6      18
+        //      / \     / \
+        //     4   9  15   21
+        //              \
+        //               16
         ABB<Integer> abbEnteros = new ABB<>();
 
         for (int i : enteros) {
@@ -28,6 +35,11 @@ public class mainEj6 {
         //System.out.println(abbEnteros.obtenerNivelDe(9));
 
         //abbEnteros.ej6parteE(3);
-        abbEnteros.ej6parteF();
+        //abbEnteros.ej6parteF();
+//        ILista<String> tuplas = abbEnteros.ej6parteG();
+//        tuplas.imprimirDatos();
+        //abbEnteros.ej6parteH(3);
+        //abbEnteros.ej6parteI("F");
+        System.out.println(abbEnteros.altura());
     }
 }

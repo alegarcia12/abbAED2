@@ -4,11 +4,21 @@ public class Estudiante implements Comparable<Estudiante> {
     private int nro;
     private String nombre;
     private String apellido;
+    private int ci;
 
-    public Estudiante(int nro, String nombre, String apellido) {
+    public Estudiante(int nro, int CI, String nombre, String apellido) {
         this.nro = nro;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.ci = CI;
+    }
+
+    public int getCi() {
+        return ci;
+    }
+
+    public void setCi(int ci) {
+        this.ci = ci;
     }
 
     public int getNro() {
@@ -42,7 +52,7 @@ public class Estudiante implements Comparable<Estudiante> {
 
     @Override
     public String toString() {
-        return "[" + nro + ", " + nombre + " " + apellido + "]";
+        return "[" + nro + ", " + ci + " ," + nombre + " " + apellido + "]";
     }
 
     @Override
